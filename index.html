@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPAT GYAN | Information Site</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #4e54c8;
+            --primary-dark: #3f43b3;
+            --secondary: #8f94fb;
+            --accent: #ff6b6b;
+            --accent-glow: rgba(255, 107, 107, 0.5);
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --darker: #1a1c20;
+            --success: #28a745;
+            --neon-blue: #00f3ff;
+            --neon-purple: #d66efd;
+        }
+
+        body {
+            background: linear-gradient(to right, var(--darker), var(--dark));
+            color: var(--light);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(78, 84, 200, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(143, 148, 251, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 40% 80%, rgba(255, 107, 107, 0.1) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(26, 28, 32, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+            transition: all 0.4s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        header.scrolled {
+            padding: 5px 0;
+            background: rgba(26, 28, 32, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            background: #f0f0f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(78, 84, 200, 0.5);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--primary);
+        }
+
+        .logo-img-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+
+            /* Gradient text */
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+
+            /* Optional: subtle glow effect */
+            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.2));
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--light);
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav a:hover {
+            color: var(--neon-blue);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+            transition: width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--light);
+            z-index: 1002;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 120px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, var(--neon-blue));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+
+/* Neon Glow Effect */
+filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.6))
+        drop-shadow(0 0 15px rgba(0, 243, 255, 0.4));
+
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 1s ease;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(78, 84, 200, 0.3);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(78, 84, 200, 0.4);
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent), #ff8e8e);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-accent:hover {
+            box-shadow: 0 15px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            font-size: 2.8rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 800;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+            border-radius: 3px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: rgba(26, 28, 32, 0.6);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            opacity: 0;
+            transform: translateY(50px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 50px;
+            margin-bottom: 25px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+            background-clip: text;               /* Standard */
+            -webkit-background-clip: text;       /* For Chrome/Safari/Edge */
+            color: transparent;                  /* Fallback */
+            -webkit-text-fill-color: transparent;/* WebKit fix */
+            transition: all 0.4s ease;
+            display: inline-block;
+
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 20px;
+            color: var(--light);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Courses Section */
+        .courses {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .course-card {
+            background: rgba(26, 28, 32, 0.6);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .course-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .course-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .course-img {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+
+        .course-content {
+            padding: 25px;
+        }
+
+        .course-content h3 {
+            margin-bottom: 15px;
+            color: var(--light);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .course-content p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .testimonial-card {
+            background: rgba(26, 28, 32, 0.6);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 80px;
+            color: rgba(255, 255, 255, 0.05);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(78, 84, 200, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover .author-avatar {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(78, 84, 200, 0.5);
+        }
+
+        /* Floating elements */
+        .floating-elements {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(78, 84, 200, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent), #ff8e8e);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .floating-btn:hover::before {
+            opacity: 1;
+        }
+
+        .floating-btn i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 12px 25px rgba(78, 84, 200, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            color: white;
+            padding: 80px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            position: relative;
+            display: inline-block;
+            font-weight: 700;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column ul li:hover {
+            transform: translateX(5px);
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--neon-blue);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(78, 84, 200, 0.4);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(78, 84, 200, 0.4);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: linear-gradient(135deg, var(--accent), #ff8e8e);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Particle animation */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatParticle 15s infinite linear;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(26, 28, 32, 0.95);
+                backdrop-filter: blur(10px);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: all 0.4s ease;
+                z-index: 1001;
+                padding: 80px 30px 30px;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .floating-elements {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .logo-text {
+                font-size: 20px;
+            }
+            
+            .feature-card, .course-card, .testimonial-card {
+                padding: 25px 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: 12px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" onclick="scrollToTop()">
+                    <div class="logo-img">
+                    <img src="logo.png" alt="GPAT Gyan Logo" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="logo-text">GPAT GYAN</div>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav id="mainNav">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>GPAT GYAN</h1>
+            <h1>Cheers for the success</h1>
+            <p>Comprehensive Preparation for GPAT, NIPER JEE, and CUET PG Examinations</p>
+            <a href="#courses" class="btn btn-accent">Explore Courses</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose GPAT GYAN?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-heartbeat feature-icon"></i>
+                    <h3>1-to-1 Doubt Solving</h3>
+                    <p>GPAT GYAN guarantees personal doubt resolution.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-bar feature-icon"></i>
+                    <h3>Daily Live Classes with Experts</h3>
+                    <p>Live expert classes available every day.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-tasks feature-icon"></i>
+                    <h3>Recorded Classes & Notes</h3>
+                    <p>Complete recorded lectures and notes provided.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-book-open feature-icon"></i>
+                    <h3>MCQ Practice in App</h3>
+                    <p>Extensive in-app MCQ practice available.</p>                
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-procedures feature-icon"></i>
+                    <h3>GPAT Exam Simulation (+4, -1 pattern)</h3>
+                    <p>Full GPAT mock tests included.</p>                
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-briefcase-medical feature-icon"></i>
+                    <h3>Affordable & Flexible Fee Structure</h3>
+                    <p>Pay in parts, flexible fees offered.</p>                
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-mortar-pestle feature-icon"></i>
+                    <h3>Number of Educators</h3>
+                    <p>7 dedicated well qualified educators with impresive all india ranks.</p>                
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-brain feature-icon"></i>
+                    <h3>Syllabus Coverage</h3>
+                    <p>100% syllabus coverage ensured.</p>                
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-syringe feature-icon"></i>
+                    <h3>Guidance Beyond GPAT/NIPER/CUET</h3>
+                    <p>Semester and admission guidance also provided.</p>                
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses" id="courses">
+        <div class="container">
+            <h2 class="section-title">Our Courses</h2>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-img">
+                        <i class="fas fa-lightbulb feature-icon"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>1 Year Comprehensive Course</h3>
+                        <p>The 1-Year Comprehensive Course offers premium online coaching designed for focused GPAT preparation. It includes live classes, detailed e-notes, weekly assessments, mock tests, and 1-to-1 interactions with experienced educators and GPAT-qualified rankers. Sessions are conducted in English, Hindi, and Bengali to ensure complete understanding and personalized guidance.</p>
+                        <a href="https://moinak1611.github.io/payment_management_system/" class="btn">GPAT GYAN | PMS</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">
+                        <i class="fas fa-bolt feature-icon"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>2 Year Extended Course</h3>
+                        <p>The 2-Year Extended Course is a value-packed program that includes everything from the 1-Year Comprehensive Course, along with an additional 6 months of extended access. It offers personalized 1-on-1 mentorship, priority doubt resolution, subject-specific guidance, and live interactive sessions with GPAT toppers from diverse locations for an enhanced learning experience.</p>
+                        <a href="https://moinak1611.github.io/payment_management_system/" class="btn">GPAT GYAN | PMS</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Update Soon!</h3>
+                        <p></p>
+                        <a href="#" class="btn"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Success Stories</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"GPAT GYAN's study material and mock tests were instrumental in helping me secure All India Rank 12. Their question bank is the closest to the actual exam."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">T</div>
+                        <div>
+                            <h4>Tanmay Mondal</h4>
+                            <p>AIR 713, GPAT 2025</p>
+                            <p>NIPER Kolkata</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The faculty at GPAT GYAN is exceptional. Their teaching methodology made difficult concepts easy to understand. I improved my score by 120 marks in just 3 months."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">R</div>
+                        <div>
+                            <h4>Rishikesh Hazra</h4>
+                            <p>AIR 502, GPAT 2025</p>
+                            <p>Jadavpur University, Kolkata</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The performance analytics helped me identify my weak areas and work on them strategically. The personalized study plan was exactly what I needed."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div>
+                            <h4>Anish Paul</h4>
+                            <p>AIR 777, GPAT 2025</p>
+                            <p>Jadavpur University, Kolkata</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The performance analytics helped me identify my weak areas and work on them strategically. The personalized study plan was exactly what I needed."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div>
+                            <h4>Najibul Mollick</h4>
+                            <p>AIR 888, GPAT 2025</p>
+                            <p>NIPER Hyderabad</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>GPAT GYAN</h3>
+                    <p>Your trusted partner in GPAT, NIPER-JEE, and CUET-PG preparation. We provide quality resources and guidance to help you achieve your goals.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/share/163ESvEjDE/"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://youtube.com/@gpatgyanofficial?si=BjajZBaDU4snNlcO"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/gpat_gyan_official2024?utm_source=qr&igsh=MTlyMDliazZtNmti"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/gpat-gyan-94a587348?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="https://moinak1611.github.io/GPAT-Gyan-Official-Website-/">Main Website</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i>Jadavpur, Kolkata, West Bengal, India, PIN-700032</li>
+                        <li><i class="fas fa-phone"></i> +91 9433578335</li>
+                        <li><i class="fas fa-envelope"></i>gpatgyanofficial@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Website is owned and administered by @GPAT_GYAN</p>
+                <p>Developed & Managed by <b><a href="https://moinak1611.github.io/-akash_chandra/" target="_blank" style="color: #85d5f2; text-decoration: none;">Akash Chandra</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="floating-btn" onclick="openChat()">
+            <i class="fas fa-comment"></i>
+        </div>
+        <div class="floating-btn" onclick="location.href='tel:+91 9433578335'">
+            <i class="fas fa-phone"></i>
+        </div>
+    </div>
+
+    <script>
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.feature-card, .course-card, .testimonial-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('nav a, .btn[href*="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mainNav').classList.remove('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.getElementById('header');
+                const backToTop = document.getElementById('backToTop');
+                
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                    backToTop.classList.add('active');
+                } else {
+                    header.classList.remove('scrolled');
+                    backToTop.classList.remove('active');
+                }
+            });
+            
+            // Mobile menu toggle
+            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+                document.getElementById('mainNav').classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function() {
+                    document.getElementById('mainNav').classList.remove('active');
+                });
+            });
+            
+            // Back to top functionality
+            document.getElementById('backToTop').addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Create particle background
+            createParticles();
+        });
+        
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        function openChat() {
+            alert("Chat feature will be implemented soon!");
+        }
+        
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const numberOfParticles = 30;
+            
+            for (let i = 0; i < numberOfParticles; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size
+                const size = Math.random() * 5 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}vw`;
+                
+                // Random animation delay
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                
+                // Random color
+                const colors = [
+                    'rgba(78, 84, 200, 0.5)',
+                    'rgba(143, 148, 251, 0.5)',
+                    'rgba(255, 107, 107, 0.5)',
+                    'rgba(0, 243, 255, 0.5)',
+                    'rgba(214, 110, 253, 0.5)'
+                ];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Logo animation on page load
+        window.onload = function() {
+            const logoImg = document.querySelector('.logo-img');
+            const logoText = document.querySelector('.logo-text');
+            
+            logoImg.style.transform = "rotate(-15deg) scale(1.1)";
+            logoText.style.transform = "scale(1.05)";
+            
+            setTimeout(function() {
+                logoImg.style.transform = "rotate(0) scale(1)";
+                logoText.style.transform = "scale(1)";
+            }, 500);
+        };
+    </script>
+</body>
+</html>
