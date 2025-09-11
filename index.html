@@ -124,15 +124,11 @@
             font-size: 24px;
             font-weight: 800;
             letter-spacing: 0.5px;
-
-            /* Gradient text */
             background: linear-gradient(to right, var(--primary), var(--secondary));
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
             -webkit-text-fill-color: transparent;
-
-            /* Optional: subtle glow effect */
             filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.2));
         }
 
@@ -204,11 +200,7 @@
             -webkit-background-clip: text;
             color: transparent;
             -webkit-text-fill-color: transparent;
-
-/* Neon Glow Effect */
-filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.6))
-        drop-shadow(0 0 15px rgba(0, 243, 255, 0.4));
-
+            filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.6)) drop-shadow(0 0 15px rgba(0, 243, 255, 0.4));
         }
 
         .hero p {
@@ -347,13 +339,12 @@ filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.6))
             font-size: 50px;
             margin-bottom: 25px;
             background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
-            background-clip: text;               /* Standard */
-            -webkit-background-clip: text;       /* For Chrome/Safari/Edge */
-            color: transparent;                  /* Fallback */
-            -webkit-text-fill-color: transparent;/* WebKit fix */
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
             transition: all 0.4s ease;
             display: inline-block;
-
         }
 
         .feature-card:hover .feature-icon {
@@ -370,6 +361,121 @@ filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.6))
         .feature-card p {
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.6;
+        }
+
+        /* Teacher Profiles Section */
+        .teachers {
+            padding: 100px 0;
+            position: relative;
+            background: rgba(26, 28, 32, 0.3);
+        }
+        
+        .teachers-slider {
+            max-width: 1000px;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .teacher-slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .teacher-slide {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .teacher-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+        
+        .teacher-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .teacher-name {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .teacher-qualification {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--neon-blue);
+        }
+        
+        .teacher-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 10;
+            padding: 0 20px;
+        }
+        
+        .slider-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .slider-btn:hover {
+            background: var(--primary);
+            transform: scale(1.1);
+        }
+        
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 15px;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-dot.active {
+            background: var(--neon-blue);
+            transform: scale(1.2);
         }
 
         /* Courses Section */
@@ -681,38 +787,6 @@ filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.6))
             color: rgba(255, 255, 255, 0.6);
         }
 
-        /* Back to top button */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            opacity: 0;
-            visibility: hidden;
-            z-index: 1000;
-            box-shadow: 0 5px 15px rgba(78, 84, 200, 0.4);
-        }
-
-        .back-to-top.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            background: linear-gradient(135deg, var(--accent), #ff8e8e);
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
-        }
-
         /* Animations */
         @keyframes fadeInDown {
             from {
@@ -845,6 +919,24 @@ filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.6))
                 width: 50px;
                 height: 50px;
             }
+            
+            .teacher-image {
+                height: 400px;
+            }
+            
+            .teacher-name {
+                font-size: 1.7rem;
+            }
+            
+            .teacher-qualification {
+                font-size: 1.1rem;
+            }
+            
+            .slider-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -866,6 +958,26 @@ filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.6))
             
             .btn {
                 padding: 12px 30px;
+            }
+            
+            .teacher-image {
+                height: 350px;
+            }
+            
+            .teacher-info {
+                padding: 20px;
+            }
+            
+            .teacher-name {
+                font-size: 1.5rem;
+            }
+            
+            .teacher-qualification {
+                font-size: 1rem;
+            }
+            
+            .teacher-description {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -891,6 +1003,7 @@ filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.6))
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#features">Features</a></li>
+                        <li><a href="#teachers">Our Educators</a></li>
                         <li><a href="#courses">Courses</a></li>
                         <li><a href="#testimonials">Testimonials</a></li>
                         <li><a href="#contact">Contact</a></li>
@@ -961,6 +1074,76 @@ filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.6))
                     <p>Semester and admission guidance also provided.</p>                
                 </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teachers Section -->
+    <section class="teachers" id="teachers">
+        <div class="container">
+            <h2 class="section-title">Meet Our Educators</h2>
+            <div class="teachers-slider">
+                <div class="teacher-slides" id="teacherSlides">
+                    <div class="teacher-slide">
+                        <img src="arijit.png" alt="Arijit Bhowmik" class="teacher-image">
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Arijit Bhowmik</h3>
+                        </div>
+                    </div>
+                    <div class="teacher-slide">
+                        <img src="chyan.png" alt="Chyan Dey" class="teacher-image">
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Chyan Dey</h3>
+                        </div>
+                    </div>
+                    <div class="teacher-slide">
+                        <img src="indrajit.png" alt="Indrajit Laha" class="teacher-image">
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Indrajit Laha</h3>
+                        </div>
+                    </div>
+                    <div class="teacher-slide">
+                        <img src="shreyashi.png" alt="Shreyashi Banerjee" class="teacher-image">
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Shreyashi Banerjee</h3>
+                        </div>
+                    </div>
+                     <div class="teacher-slide">
+                        <img src="souvik.png" alt="Souvik Dey" class="teacher-image">
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Souvik Dey</h3>
+                        </div>
+                    </div>
+                    <div class="teacher-slide">
+                        <img src="hardik.png" alt="Hardik" class="teacher-image">
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Hardik</h3>
+                        </div>
+                    </div>
+                    <div class="teacher-slide">
+                        <img src="debjit.png" alt="Debjit Adak" class="teacher-image">
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Debjit Adak</h3>
+                        </div>
+                    </div>
+                    <div class="teacher-slide">
+                        <img src="akash.png" alt="Akash Chandra" class="teacher-image">
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Akash Chandra</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-nav">
+                    <div class="slider-btn prev-btn" onclick="prevSlide()">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="slider-btn next-btn" onclick="nextSlide()">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-dots" id="sliderDots">
+                <!-- Dots will be generated by JavaScript -->
             </div>
         </div>
     </section>
@@ -1140,6 +1323,7 @@ filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.6))
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#features">Features</a></li>
+                        <li><a href="#teachers">Our Teachers</a></li>
                         <li><a href="#courses">Courses</a></li>
                         <li><a href="#testimonials">Testimonials</a></li>
                         <li><a href="https://moinak1611.github.io/GPAT-Gyan-Official-Website-/">Main Website</a></li>
@@ -1252,6 +1436,17 @@ filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.6))
             
             // Create particle background
             createParticles();
+            
+            // Initialize teacher slider
+            createDots();
+            
+            // Add touch events for mobile swipe
+            const slider = document.getElementById('teacherSlides');
+            slider.addEventListener('touchstart', handleTouchStart);
+            slider.addEventListener('touchend', handleTouchEnd);
+            
+            // Auto slide every 5 seconds
+            setInterval(nextSlide, 5000);
         });
         
         function scrollToTop() {
@@ -1312,6 +1507,74 @@ filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.6))
                 logoText.style.transform = "scale(1)";
             }, 500);
         };
+        
+        // Teacher Slider Functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.teacher-slide');
+        const slider = document.getElementById('teacherSlides');
+        const dotsContainer = document.getElementById('sliderDots');
+        
+        // Create dots for slider
+        function createDots() {
+            for (let i = 0; i < slides.length; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('slider-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    goToSlide(i);
+                });
+                dotsContainer.appendChild(dot);
+            }
+        }
+        
+        // Go to specific slide
+        function goToSlide(index) {
+            if (index < 0) index = slides.length - 1;
+            if (index >= slides.length) index = 0;
+            
+            currentSlide = index;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update active dot
+            document.querySelectorAll('.slider-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+        
+        // Next slide
+        function nextSlide() {
+            goToSlide(currentSlide + 1);
+        }
+        
+        // Previous slide
+        function prevSlide() {
+            goToSlide(currentSlide - 1);
+        }
+        
+        // Touch swipe functionality
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        function handleTouchStart(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }
+        
+        function handleTouchEnd(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }
+        
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                // Swipe left - next slide
+                nextSlide();
+            }
+            
+            if (touchEndX > touchStartX + 50) {
+                // Swipe right - previous slide
+                prevSlide();
+            }
+        }
     </script>
 </body>
 </html>
